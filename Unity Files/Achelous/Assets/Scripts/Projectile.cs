@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.tag == "Target")
         {
             other.gameObject.GetComponent<Target>().Hit();
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 }

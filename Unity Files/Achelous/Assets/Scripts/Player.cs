@@ -41,6 +41,10 @@ public class Player : MonoBehaviour
                 Shoot();
             }
         }
+        else
+        {
+            currentTarget = null;
+        }
     }
 
     GameObject GetClosestTarget()
@@ -74,7 +78,7 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(Cooldown());
         GameObject Shotprojectile = Instantiate(projectile, projectileSpawnpoint.position, projectileSpawnpoint.rotation);
-        Shotprojectile.GetComponent<Projectile>().SetTarget(currentTarget);
+        Shotprojectile.GetComponentInChildren<Projectile>().SetTarget(currentTarget);
     }
 
     IEnumerator Cooldown()

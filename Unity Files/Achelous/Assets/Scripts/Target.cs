@@ -49,62 +49,60 @@ public class Target : MonoBehaviour
         //Only check if it is visible while its being rendered
         if (isRendered)
         {
-            if (CheckIfSeen(aimCamera))
-                IsSeen();
-            else
-                IsNotSeen();
+            CheckIfSeen(aimCamera);
         }
     }
 
 
     void chargeManager()
     {
-        gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+        gameObject.GetComponent<Renderer>().material.SetColor("_BaseColor", Color.red);
 
-        /*
+        
         //Charge till the maximum
         currentCharge = Mathf.Clamp(currentCharge += Time.deltaTime, 0, chargeTime);
 
         //If charging is done stop it
         if (currentCharge >= chargeTime)
         {
-            GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+            //Debug.Log("Fully charged");
+            GetComponent<Renderer>().material.SetColor("_BaseColor", Color.green);
             startCharging = false;
             fullCharge = true;
-
+            return;
         }
 
         //Check if currentcharge has reached the halfway point (with some room for error
         if (currentCharge < (chargeTime * 0.6) && currentCharge > (chargeTime * 0.4))
         {
+            //yellow
+            //Debug.Log("MidPoint charged");
+
             midPointCharge = true;
-            GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
+            GetComponent<Renderer>().material.SetColor("_BaseColor", Color.yellow);
+
         }
         else if (currentCharge > (chargeTime * 0.6) && midPointCharge)
         {
-            GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+            //red
+            //Debug.Log("Midpoint passed");
+
+            GetComponent<Renderer>().material.SetColor("_BaseColor", Color.red);
             midPointCharge = false;
-        }*/
+        }
     }
 
 
     //Checks if object collider is within the view of the camera;
-    bool CheckIfSeen(Camera aimCamera)
+    void CheckIfSeen(Camera aimCamera)
     {
-        bool wasSeen;
         var planes = GeometryUtility.CalculateFrustumPlanes(aimCamera);
         Collider objCollider = GetComponent<Collider>();
 
         if (GeometryUtility.TestPlanesAABB(planes, objCollider.bounds))
-        {
-            wasSeen = true;
-        }
+            IsSeen();
         else
-        {
-            wasSeen = false;
-        }
-
-        return wasSeen;
+            IsNotSeen();
     }
 
 
@@ -180,7 +178,6 @@ public class Target : MonoBehaviour
         {
             Debug.Log("Crit");
             playerScript.moveScript.SpeedBoost(true);
-            Destroy(gameObject);
         } 
         
         //Got shot when charge is full
@@ -188,9 +185,8 @@ public class Target : MonoBehaviour
         {
             //Debug.Log("Hit");
             playerScript.moveScript.SpeedBoost(false);
-            Destroy(gameObject);
         }
 
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }
