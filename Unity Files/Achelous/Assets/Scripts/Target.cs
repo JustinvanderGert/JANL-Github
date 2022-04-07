@@ -178,6 +178,7 @@ public class Target : MonoBehaviour
         {
             Debug.Log("Crit");
             playerScript.moveScript.SpeedBoost(true);
+            playerScript.moveScript.StartDoubleJump(true);
         } 
         
         //Got shot when charge is full
@@ -185,6 +186,7 @@ public class Target : MonoBehaviour
         {
             //Debug.Log("Hit");
             playerScript.moveScript.SpeedBoost(false);
+            playerScript.moveScript.StartDoubleJump(false);
         }
 
         Destroy(transform.parent.gameObject);

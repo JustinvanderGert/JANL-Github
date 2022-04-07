@@ -10,6 +10,8 @@ public class PlayerMovement_FirstPerson : MonoBehaviour
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
 
+    public bool doubleJump = false;
+
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
@@ -19,7 +21,6 @@ public class PlayerMovement_FirstPerson : MonoBehaviour
     bool isGrounded;
 
     float speed = 12f;
-
 
 
     private void Start()
@@ -43,8 +44,12 @@ public class PlayerMovement_FirstPerson : MonoBehaviour
 
         characterController.Move(move * speed * Time.deltaTime);
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if(Input.GetButtonDown("Jump") && (isGrounded || doubleJump))
         {
+            if(!isGrounded && doubleJump)
+            {
+                doubleJump = false;
+            }
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
@@ -59,23 +64,37 @@ public class PlayerMovement_FirstPerson : MonoBehaviour
         {
             if (speed == baseSpeed)
             {
-                speed *= 2;
+                speed *= 3;
             }
         }
         else
         {
             if (speed == baseSpeed)
             {
-                speed *= 1.5f;
+                speed *= 2f;
             }
         }
 
         StartCoroutine(BoostTimer(10));
     }
 
+    public void StartDoubleJump(bool crit = false)
+    {
+        if (crit)
+            StartCoroutine(SetDoubleJump(3));
+        else
+            StartCoroutine(SetDoubleJump(1));
+    }
+
+    public IEnumerator SetDoubleJump(float doubleJumpTimer)
+    {
+        doubleJump = true;
+        yield return new WaitForSeconds(doubleJumpTimer);
+        doubleJump = false;
+    }
+
     IEnumerator BoostTimer(float time)
     {
-
         yield return new WaitForSeconds(time);
         speed = baseSpeed;
     }
