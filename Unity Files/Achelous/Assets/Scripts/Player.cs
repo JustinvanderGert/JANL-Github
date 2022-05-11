@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject sprite_Target;
     public PlayerMovement_FirstPerson moveScript;
-    public List <GameObject> visibleTargets = new List<GameObject>();
+    public List<GameObject> visibleTargets = new List<GameObject>();
     public Transform projectileSpawnpoint;
     public GameObject projectile;
 
@@ -28,7 +29,10 @@ public class Player : MonoBehaviour
         //If targets are visible find the closest
         if (visibleTargets.Count > 0)
         {
+            sprite_Target.SetActive(true);
             currentTarget = GetClosestTarget();
+
+            //sprite_Target.transform.position = 
 
             if (currentTarget.GetComponent<Target>().currentCharge == 0)
             {
@@ -43,6 +47,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            sprite_Target.SetActive(false);
             currentTarget = null;
         }
     }
