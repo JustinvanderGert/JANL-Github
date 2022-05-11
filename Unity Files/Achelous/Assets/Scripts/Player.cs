@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
             sprite_Target.SetActive(true);
             currentTarget = GetClosestTarget();
 
-            //sprite_Target.transform.position = 
+            sprite_Target.transform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, currentTarget.transform.position);
 
             if (currentTarget.GetComponent<Target>().currentCharge == 0)
             {

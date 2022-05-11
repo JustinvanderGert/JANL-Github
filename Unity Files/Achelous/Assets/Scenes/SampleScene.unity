@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5a4e290e5a67f43878e3cecbd753cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite_Target: {fileID: 0}
+  sprite_Target: {fileID: 681461896}
   moveScript: {fileID: 534067609}
   visibleTargets: []
   projectileSpawnpoint: {fileID: 534067607}
@@ -1387,6 +1387,11 @@ Transform:
   m_Father: {fileID: 1982151776}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &681461896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 898756130421601655, guid: d2c8bff4c7731c640b51588a343eab75, type: 3}
+  m_PrefabInstance: {fileID: 241624767}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &698310349
 PrefabInstance:
   m_ObjectHideFlags: 0
