@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject sprite_Target;
+    public GameObject target;
     public PlayerMovement_FirstPerson moveScript;
     public List<GameObject> visibleTargets = new List<GameObject>();
     public Transform projectileSpawnpoint;
@@ -29,15 +29,15 @@ public class Player : MonoBehaviour
         //If targets are visible find the closest
         if (visibleTargets.Count > 0)
         {
-            sprite_Target.SetActive(true);
+            target.SetActive(true);
             currentTarget = GetClosestTarget();
 
-            sprite_Target.transform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, currentTarget.transform.position);
+            target.transform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, currentTarget.transform.position);
 
-            if (currentTarget.GetComponent<Target>().currentCharge == 0)
+            /*if (currentTarget.GetComponent<Target2>().currentCharge == 0)
             {
-                currentTarget.GetComponent<Target>().startCharging = true;
-            }
+                currentTarget.GetComponent<Target2>().chargeState = Target2.ChargeStates.Charging;
+            }*/
 
             //If you press left click, shoot
             if (!rechargeShot && Input.GetMouseButtonDown(0))
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            sprite_Target.SetActive(false);
+            target.SetActive(false);
             currentTarget = null;
         }
     }
@@ -72,9 +72,7 @@ public class Player : MonoBehaviour
 
         if(closestObj != currentTarget)
         {
-            closestObj.GetComponent<Target>().isTarget(true);
-            if (currentTarget != null)
-                currentTarget.GetComponent<Target>().isTarget(false);
+            target.GetComponent<Target2>().ResetState();
         }
         return closestObj;
     }

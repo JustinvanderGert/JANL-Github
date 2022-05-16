@@ -23,10 +23,11 @@ public class Projectile : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Target")
+        if (other.gameObject.tag == "Shootable")
         {
-            other.gameObject.GetComponent<Target>().Hit();
-            Destroy(transform.parent.gameObject);
+            other.gameObject.GetComponent<Shootables>().Hit();
+            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
     }
 }

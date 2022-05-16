@@ -61,6 +61,7 @@ public class Target : MonoBehaviour
         
         //Charge till the maximum
         currentCharge = Mathf.Clamp(currentCharge += Time.deltaTime, 0, chargeTime);
+        
 
         //If charging is done stop it
         if (currentCharge >= chargeTime)
