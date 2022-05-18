@@ -34,6 +34,11 @@ public class Shootables : MonoBehaviour
         playerScript.visibleTargets.Remove(gameObject);
         target.Hit();
 
+        if (transform.parent != null && transform.parent.CompareTag("HermitCrab"))
+        {
+            transform.parent.gameObject.GetComponent<HermitCrab>().Hit();
+        }
+
         Destroy(gameObject);
     }
 
