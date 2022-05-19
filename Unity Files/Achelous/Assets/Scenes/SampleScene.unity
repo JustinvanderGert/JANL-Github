@@ -17,9 +17,9 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.09998218, g: 0.30484673, b: 0.38679248, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.02
+  m_FogDensity: 0.06
   m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_LinearFogEnd: 30
   m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.017123522, g: 0.15401919, b: 0.24528301, a: 1}
   m_AmbientGroundColor: {r: 0.015076538, g: 0.021716049, b: 0.103773594, a: 1}
