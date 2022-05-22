@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     {
 
     }
-
+    
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);

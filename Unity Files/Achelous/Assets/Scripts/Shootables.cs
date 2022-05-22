@@ -28,7 +28,7 @@ public class Shootables : MonoBehaviour
             CheckIfSeen(aimCamera);
         }
     }
-
+    
     public void Hit()
     {
         playerScript.visibleTargets.Remove(gameObject);

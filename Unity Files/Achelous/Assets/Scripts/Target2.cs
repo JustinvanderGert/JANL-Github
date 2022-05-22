@@ -15,7 +15,7 @@ public class Target2 : MonoBehaviour
 
     public float currentCharge = 0;
     public float chargeTime = 10;
-
+    
 
 
     // Start is called before the first frame update
