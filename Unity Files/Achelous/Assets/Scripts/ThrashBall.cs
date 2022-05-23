@@ -11,9 +11,9 @@ public class ThrashBall : MonoBehaviour
     bool targetReached = false;
 
 
-    void Start()
+    void OnEnable()
     {
-        
+        StartCoroutine(TimedDestroy());
     }
 
     void Update()
@@ -24,6 +24,17 @@ public class ThrashBall : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed);
         else
             targetReached = true;
+
+        if (targetReached)
+        {
+            GetComponent<Rigidbody>().useGravity = true;
+        }
+    }
+
+    IEnumerator TimedDestroy()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 
     void OnCollisionEnter(Collision other)
