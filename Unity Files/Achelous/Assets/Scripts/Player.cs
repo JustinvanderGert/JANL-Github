@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        moveScript = GetComponent<PlayerMovement_FirstPerson>();
+        moveScript = gameObject.GetComponent<PlayerMovement_FirstPerson>();
     }
 
     void Update()
@@ -89,5 +89,10 @@ public class Player : MonoBehaviour
         rechargeShot = true;
         yield return new WaitForSeconds(shootingCooldown);
         rechargeShot = false;
+    }
+
+    void OnParticleTrigger()
+    {
+        Debug.Log("Hit the Player with the wave");
     }
 }

@@ -6,6 +6,9 @@ public class HermitCrab : MonoBehaviour
 {
     [SerializeField]
     Animator animator;
+    ParticleSystem waveParticles;
+
+    GameObject player;
 
 
     enum AttackPhase { Idle, Phase1, Phase2, Phase3, Defeated }
@@ -25,14 +28,21 @@ public class HermitCrab : MonoBehaviour
 
     public List<GameObject> activeShootables = new List<GameObject>();
     public GameObject shootable;
+    public GameObject projectile;
 
     public float idleTime = 3;
     public float armAttackDelay = 5;
+    public float slamAttackDelay = 10;
+    public float slamParticleDelay = 0.5f;
+    
 
 
     void Start()
     {
-        gameObject.GetComponent<Animator>();
+        animator = gameObject.GetComponent<Animator>();
+        waveParticles = gameObject.GetComponentInChildren<ParticleSystem>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -41,16 +51,6 @@ public class HermitCrab : MonoBehaviour
         {
             SetPhase();
         }
-        /*
-        if (gameObject.GetComponent<Animation>()["LeftArmAttack"].normalizedTime == 0.575)
-        {
-            Debug.Log("Left Attack retrieving");
-            ArmAttackDelay();
-        } else if (gameObject.GetComponent<Animation>()["LeftArmAttack"].normalizedTime == 0.75)
-        {
-            Debug.Log("Right Attack retrieving");
-            ArmAttackDelay();
-        }*/
     }
 
     
@@ -100,7 +100,7 @@ public class HermitCrab : MonoBehaviour
         //Throw trash
         if (attackPhase == AttackPhase.Phase1)
         {
-
+            StartCoroutine(ThrowAttack());
         }
 
         //Swing arms
@@ -108,43 +108,86 @@ public class HermitCrab : MonoBehaviour
         {
             if (leftArmAttack)
             {
-                leftArmAttack = false;
-                armHitTriggers[1].enabled = true;
 
                 animator.SetBool("RightAttack", false);
                 animator.SetTrigger("ArmAttack");
             }
             else
             {
-                leftArmAttack = true;
-                armHitTriggers[0].enabled = true;
-
                 animator.SetBool("RightAttack", true);
                 animator.SetTrigger("ArmAttack");
             }
 
-            StartCoroutine(ArmAttackDelay());
+            StartCoroutine(ArmAttack());
         }
 
         //Slam Attack (Wave of trash)
         else if (attackPhase == AttackPhase.Phase3)
         {
-
+            animator.SetTrigger("SlamAttack");
+            StartCoroutine(SlamAttack());
         }
     }
 
-    //Time between arm attacks
-    IEnumerator ArmAttackDelay()
+    IEnumerator ThrowAttack()
     {
-        animator.ResetTrigger("ArmAttack");
+        yield return new WaitForSeconds(1);
+        GameObject thrownObject = Instantiate(projectile);
+        thrownObject.GetComponent<ThrashBall>().targetPosition = player.transform.position;
+        thrownObject.GetComponent<ThrashBall>().player = player;
 
-        //Turn triggers off
+
+        yield return new WaitForSeconds(2);
+        Attack();
+    }
+
+    //Time between arm attacks
+    IEnumerator ArmAttack()
+    {
+        //Make arms lethal
+        float startTime;
+        float endedTime;
+
+        if (leftArmAttack)
+        {
+            startTime = 1f;
+            endedTime = 1f;
+        } else
+        {
+            startTime = 1f;
+            endedTime = 0.8f;
+        }
+
+        yield return new WaitForSeconds(startTime);
+
+        if (leftArmAttack)
+            armHitTriggers[0].enabled = true;
+        else
+            armHitTriggers[1].enabled = true;
+
+
+        //Make arms non-lethal
+        yield return new WaitForSeconds(endedTime);
+
         foreach (Collider arm in armHitTriggers)
         {
             arm.enabled = false;
         }
-        yield return new WaitForSeconds(armAttackDelay);
 
+        leftArmAttack = !leftArmAttack;
+
+
+        //Start next attack
+        yield return new WaitForSeconds(armAttackDelay);
+        Attack();
+    }
+
+    IEnumerator SlamAttack()
+    {
+        yield return new WaitForSeconds(slamParticleDelay);
+        waveParticles.Play();
+
+        yield return new WaitForSeconds(slamAttackDelay);
         Attack();
     }
 
@@ -200,5 +243,7 @@ public class HermitCrab : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //Hit the player
+        if(other.gameObject.CompareTag("Player"))
+            Debug.Log("Hit the Player");
     }
 }
