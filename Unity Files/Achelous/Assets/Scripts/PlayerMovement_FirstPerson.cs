@@ -3,7 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement_FirstPerson : MonoBehaviour
+
 {
+  
+    private SpeedReader SpeedReader; 
+
+    private void start( )
+    {
+        SpeedReader = GameObject.Find("Speedometer").GetComponent<SpeedReader>();
+    }
+    public float speedScore; Vector3 oldPosition;
+    void FixedUpdate()
+    {
+        speedScore = Vector3.Distance(oldPosition, transform.position) * 100f;
+        oldPosition = transform.position;
+        Debug.Log("Speed: " + speedScore.ToString("F0"));
+        
+        
+    }
+
     CharacterController characterController;
 
     public float baseSpeed = 12f;
@@ -20,8 +38,8 @@ public class PlayerMovement_FirstPerson : MonoBehaviour
 
     bool isGrounded;
 
-    float speed = 12f;
-
+    public float speed = 12f;
+    
 
     private void Start()
     {
