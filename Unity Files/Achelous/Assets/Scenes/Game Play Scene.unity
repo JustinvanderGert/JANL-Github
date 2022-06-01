@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 68881542}
   - component: {fileID: 68881541}
   - component: {fileID: 68881540}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platforms (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 426892762}
   - component: {fileID: 426892761}
   - component: {fileID: 426892760}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Flat Plane Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1097,7 +1097,7 @@ GameObject:
   - component: {fileID: 705118961}
   - component: {fileID: 705118960}
   - component: {fileID: 705118959}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platforms (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6798,6 +6798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f6681cf485d47488e181b730a07bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedScore: 0
   baseSpeed: 12
   gravity: -9.81
   jumpHeight: 3
@@ -6807,6 +6808,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  speed: 12
 --- !u!143 &1424874290
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6981,7 +6983,7 @@ Camera:
   field of view: 32
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: -2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 64
@@ -7206,7 +7208,7 @@ GameObject:
   - component: {fileID: 1978382765}
   - component: {fileID: 1978382764}
   - component: {fileID: 1978382763}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
