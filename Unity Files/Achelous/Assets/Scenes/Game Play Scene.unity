@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 426892762}
   - component: {fileID: 426892761}
   - component: {fileID: 426892760}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Flat Plane Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6709,11 +6709,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 953032887952589836, guid: d2c8bff4c7731c640b51588a343eab75, type: 3}
   m_PrefabInstance: {fileID: 1415957935}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1415957937 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 898756130421601655, guid: d2c8bff4c7731c640b51588a343eab75, type: 3}
-  m_PrefabInstance: {fileID: 1415957935}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1424874285
 GameObject:
   m_ObjectHideFlags: 0
@@ -6779,13 +6774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5a4e290e5a67f43878e3cecbd753cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1415957937}
-  moveScript: {fileID: 1424874289}
-  visibleTargets: []
-  projectileSpawnpoint: {fileID: 1424874286}
-  projectile: {fileID: 8931939397258461477, guid: 32fb5eba5cd553e4da904594e78087d0, type: 3}
-  minTargetingRange: 100
-  shootingCooldown: 0.5
 --- !u!114 &1424874289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6798,6 +6786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f6681cf485d47488e181b730a07bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedScore: 0
   baseSpeed: 12
   gravity: -9.81
   jumpHeight: 3
@@ -6807,6 +6796,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  speed: 12
 --- !u!143 &1424874290
 CharacterController:
   m_ObjectHideFlags: 0
@@ -7583,23 +7573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b5b2d94bd41949458526d2547c6d550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2054740040}
-  attackPhase: 0
-  weakSpots:
-  - {fileID: 1806600554}
-  - {fileID: 232034765}
-  - {fileID: 1193380810}
-  - {fileID: 198802603}
-  armHitTriggers:
-  - {fileID: 775463585}
-  - {fileID: 1325517105}
-  activeShootables: []
-  shootable: {fileID: 6122355611262371972, guid: 184b1715158a7364582b4236dfee79c3, type: 3}
-  projectile: {fileID: 8412644024158949413, guid: b7df33f494aaeae4d8a66ebd35f0717f, type: 3}
-  idleTime: 7.5
-  armAttackDelay: 5
-  slamAttackDelay: 10
-  slamParticleDelay: 1
 --- !u!4 &2054740042
 Transform:
   m_ObjectHideFlags: 0

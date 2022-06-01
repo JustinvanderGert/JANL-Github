@@ -472,11 +472,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 953032887952589836, guid: d2c8bff4c7731c640b51588a343eab75, type: 3}
   m_PrefabInstance: {fileID: 492304531}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &492304533 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 898756130421601655, guid: d2c8bff4c7731c640b51588a343eab75, type: 3}
-  m_PrefabInstance: {fileID: 492304531}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &513758505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1087,7 +1082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4079322e8f46446a0bbc4d8634d511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+  mouseSensitivity: 150
 --- !u!114 &961134250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1100,13 +1095,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5a4e290e5a67f43878e3cecbd753cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 492304533}
-  moveScript: {fileID: 961134251}
-  visibleTargets: []
-  projectileSpawnpoint: {fileID: 961134248}
-  projectile: {fileID: 8931939397258461477, guid: 32fb5eba5cd553e4da904594e78087d0, type: 3}
-  minTargetingRange: 100
-  shootingCooldown: 0.5
 --- !u!114 &961134251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,6 +1107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f6681cf485d47488e181b730a07bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedScore: 0
   baseSpeed: 12
   gravity: -9.81
   jumpHeight: 3
@@ -1128,6 +1117,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  speed: 12
 --- !u!143 &961134252
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2163,6 +2153,7 @@ GameObject:
   - component: {fileID: 1751389879}
   - component: {fileID: 1751389878}
   - component: {fileID: 1751389877}
+  - component: {fileID: 1751389880}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2268,6 +2259,28 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1751389880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751389875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f721deb47bf3d45bf876478884f590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_speed: 0
+  last_speed: 0
+  currentFov: 0
+  desiredFov: 0
+  zoomStep: 20
+  zoomBoundOne: 20
+  zoomBoundTwo: 40
+  fovBoundOne: 40
+  fovBoundTwo: 50
+  fovBoundThree: 60
 --- !u!1001 &1758897155
 PrefabInstance:
   m_ObjectHideFlags: 0
